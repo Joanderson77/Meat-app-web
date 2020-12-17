@@ -27,6 +27,7 @@ export class RadioComponent implements OnInit, ControlValueAccessor {
 
   setValue(value: any){
     this.value = value
+    this.onChange(this.value)
   }
 
   /**
@@ -34,7 +35,7 @@ export class RadioComponent implements OnInit, ControlValueAccessor {
      */
     writeValue(obj: any): void{
       this.value = obj
-      this.onChange = (this.value)
+      
 
     }
     /**
