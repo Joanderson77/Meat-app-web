@@ -1,7 +1,22 @@
 import { CartItem } from "./cart-item.model"
 import {MenuItem} from "../menu-item/menu-item.model"
+import { Injectable } from "@angular/core"
 
+@Injectable()
 export class ShoppingCartService{
+
+    increaseQty(item: CartItem){
+        item.quantity = item.quantity +1
+    }
+
+    decreaseQty(item: CartItem){
+        item.quantity = item.quantity -1
+        if(item.quantity ===0){
+            this.removeItem(item)
+        }
+    }
+    
+
 
     items: CartItem[] = []
 
@@ -24,18 +39,7 @@ if (foundItem) {
 
     }
 
-    increaseQty(item: CartItem){
-        item.quantity = item.quantity +1
-    }
-
-    decreaseQty(item: CartItem){
-        item.quantity = item.quantity -1
-        if(item.quantity ===0){
-            this.removeItem(item)
-        }
-    }
-    
-    
+        
     total(): number{
         return this.items.map(item => item.value())
         .reduce((prev, value) => prev+value, 0)
